@@ -1,0 +1,10 @@
+CREATE TABLE HtmlPages
+(
+    ID SERIAL PRIMARY KEY,
+    FullHTML TEXT,
+    Title TEXT,
+    Text TEXT,
+    URL TEXT,
+	dateTime TEXT,
+	Domain TEXT
+);

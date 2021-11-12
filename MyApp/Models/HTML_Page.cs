@@ -16,5 +16,7 @@ namespace MyApp.Models
         public string URL { get; set; }
 
         public string dateTime { get; set; }
+
+        public string Domain { set; get; }
     }
 }
