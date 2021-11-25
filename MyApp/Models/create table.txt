@@ -1,10 +1,15 @@
 CREATE TABLE HtmlPages
 (
-    ID SERIAL PRIMARY KEY,
-    FullHTML TEXT,
-    Title TEXT,
-    Text TEXT,
-    URL TEXT,
-	dateTime TEXT,
-	Domain TEXT
+    id SERIAL PRIMARY KEY,
+    fullhtml TEXT,
+    title TEXT,
+    text TEXT,
+    url TEXT,
+	datetime TEXT,
+	domain TEXT
 );
+
+CREATE TABLE HtmlPages (id SERIAL PRIMARY KEY,fullhtml TEXT,title TEXT,text TEXT,url TEXT,datetime TEXT,domain TEXT);
+
+docker container run -d --name=ps -p 2345:5432 -e POSTGRES_PASSWORD=praj -e PGDATA=/pgdata -v /pgdata:/pgdata postgres
+docker exec -t ps bash

@@ -17,7 +17,7 @@ namespace MyApp.Class
                 return response.StatusCode == HttpStatusCode.OK;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

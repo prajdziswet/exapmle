@@ -38,9 +38,10 @@ namespace MyApp.Class
         public  void Analiz()
         {
             List<Uri> listUri = useAbot.GetLinks().Result;
-
+            int x = 1,count=listUri.Count;
             foreach (Uri elemUri in listUri)
             {
+                Console.WriteLine((x++)+"/"+ count);
                 AddClass(elemUri);
             }
             //ParallelLoopResult result = Parallel.ForEach<Uri>(listUri, AddClass);
@@ -53,15 +54,16 @@ namespace MyApp.Class
 
                 using (ApplicationContext db = new ApplicationContext())
                 {
-
+                    int? x = db.HtmlPages.AsNoTracking().Count();
                     if (db.HtmlPages.AsNoTracking().Count() == 0||
-                        !db.HtmlPages.Any(x => x.URL == uri.ToString()))
+                        !db.HtmlPages.Any(x => x.url == uri.ToString()))
                     {
                         HTMLPage tempclass = useParse.CreateEntetyHTMLPage(uri, HtmlCode);
                         if (tempclass!=null)
                         {
                             db.Add(tempclass);
-                            db.SaveChangesAsync();
+                            db.SaveChanges();
+                            Console.WriteLine(db.HtmlPages.Count());
                         }
                     }
                 }

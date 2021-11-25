@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Funq;
 using ServiceStack;
 using ServiceStack.Configuration;
+using MyApp.Class;
 
 namespace MyApp
 {
@@ -37,6 +38,7 @@ namespace MyApp
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseMiddleware<ChangeMaxAge>();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

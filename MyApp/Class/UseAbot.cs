@@ -19,7 +19,7 @@ namespace MyApp.Class
         {
             var pageRequester = new PageRequester(new CrawlConfiguration(), new WebContentExtractor());
             var crawledPage = await pageRequester.MakeRequestAsync(URItemp);
-            return crawledPage.Content.Text;
+            return new string(crawledPage.Content.Text);
         }
 
         public async Task<List<Uri>> GetLinks()

@@ -10,6 +10,6 @@ using MyApp.Models;
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=praj");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=2345;Database=postgres;Username=postgres;Password=praj");
         }
     }

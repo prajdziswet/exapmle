@@ -26,13 +26,13 @@ namespace MyApp.Class
             string BodyArticle = GetBodyArticle(HtmlCode);
             if (BodyArticle == "") return null;
             HTMLPage pageReturn = new HTMLPage();
-            pageReturn.Domain = UriDomain.ToString();
-            pageReturn.URL = UriAdress.ToString();
-            pageReturn.FullHTML = HtmlCode;
-            pageReturn.Title = GetTitle(BodyArticle);
+            pageReturn.domain = UriDomain.ToString();
+            pageReturn.url = UriAdress.ToString();
+            pageReturn.fullhtml = HtmlCode;
+            pageReturn.title = GetTitle(BodyArticle);
             (string Date, string Aticle) = GetDateandAticle(BodyArticle);
-            pageReturn.Text = Aticle;
-            pageReturn.dateTime = Date;
+            pageReturn.text = Aticle;
+            pageReturn.datetime = Date;
        
             return pageReturn;
         }
@@ -63,21 +63,14 @@ namespace MyApp.Class
 
         private (string Date, string Aticle) GetDateandAticle(string BodyArticle)
         {
-            Console.WriteLine("___________________________________1___________________________________");
-            Console.WriteLine(BodyArticle);
-            Console.WriteLine("___________________________________end 1______________________________________");
             string strFirst =
                 BodyArticle.Substring(0, BodyArticle.Substring(0, BodyArticle.IndexOf("<p>")).LastIndexOf("<div"));
             string strEnd = Regex.Replace(BodyArticle, "< script.+?/ script >", String.Empty);
             strEnd = WithoutHtmlTag(BodyArticle.Replace(strFirst, String.Empty))??"";
-            Console.WriteLine("____________________________________________________________________________");
-            Console.WriteLine(strEnd);
             strFirst = Regex.Replace(strFirst, @"(?s)<h\d>.+?</h\d>", String.Empty);
             strFirst = WithoutHtmlTag(strFirst);
-            var x=UsePulenity.ReturnPullenity(strFirst).Result.Entities.Where(x => x.TypeName == "DATE").Select(x=>x.ToString()).Max();
-            Console.WriteLine(x);
+            var time = UsePulenity.ReturnPullenity(strFirst).Result.Entities.Where(x => x.TypeName == "DATE").OrderByDescending(x=>x.ToString().Length).ToString()??"";
 
-            string time = UsePulenity.ReturnPullenity(strFirst).Result.Entities.Where(x => x.TypeName == "DATE").Max(x => x.ToString().Length).ToString() ?? "";
             return (time, strFirst);
         }
     }

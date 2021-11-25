@@ -3,20 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyApp.Models
 {
-    [Table("HtmlPages")]
+    [Table("htmlpages")]
     public class HTMLPage
     {
-        public int ID { get; set; }
-        public string FullHTML { get; set; }
+        public int id { get; set; }
+        public string fullhtml { get; set; }
 
-        public string Title { get; set; }
+        public string title { get; set; }
 
-        public string Text { get; set; }
+        public string text { get; set; }
 
-        public string URL { get; set; }
+        public string url { get; set; }
 
-        public string dateTime { get; set; }
+        public string datetime { get; set; }
 
-        public string Domain { set; get; }
+        public string domain { set; get; }
     }
 }
