@@ -1,7 +1,22 @@
-﻿@{
+﻿@using MyApp.Class
+@{
     ViewData["Title"] = "While don't use";
 }
 <h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+@{
+    <table>
+        <tr>
+            <td>Сайт</td>
+            <td>Новость</td>
+        </tr>
+        @foreach (HTMLPage element in StartWorkWeb.ReturnHtmlPages())
+        {
+<tr>
+        <td>@element.domain</td>
+        <td><a asp-action="Show" asp-route-id="@element.id">@element.title</a></td>
+        </tr>
+        }
+    </table>
 
-<p>Use this area to provide additional information.</p>
+}
+

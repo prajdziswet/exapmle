@@ -50,6 +50,11 @@ namespace MyApp.Class
 
         }
 
+        public static IReadOnlyList<HTMLPage> ReturnHtmlPages()
+        {
+            return (new ApplicationContext()).HtmlPages.AsNoTracking().ToList();
+        }
+
         private static UseAbot useAbot;
         private static UseParse useParse;
         private static async void StartAnalize(string link)

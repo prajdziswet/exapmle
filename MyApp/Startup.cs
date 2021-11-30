@@ -8,9 +8,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Funq;
+using Microsoft.EntityFrameworkCore;
 using ServiceStack;
 using ServiceStack.Configuration;
 using MyApp.Class;
+using MyApp.Models;
 
 namespace MyApp
 {
@@ -20,6 +22,8 @@ namespace MyApp
         public new void ConfigureServices(IServiceCollection services)
         {
             Pullenti.Sdk.InitializeAll();
+            //services.AddDbContext<AppContext>(op =>op.UseNpgsql("Host=localhost;Port=2345;Database=postgres;Username=postgres;Password=praj"));
+
 #if DEBUG
             services.AddMvc(options => options.EnableEndpointRouting = false).AddRazorRuntimeCompilation();
 #else

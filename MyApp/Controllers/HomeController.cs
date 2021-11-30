@@ -19,8 +19,15 @@ namespace MyApp.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "don't use";
+            return View();
+        }
 
+        public IActionResult Show(int id)
+        {
+            HTMLPage page = StartWorkWeb.ReturnHtmlPages().FirstOrDefault(x => x.id == id);
+            ViewData["title"] = page.title;
+            ViewData["data"] = page.datetime;
+            ViewData["text"] = page.text;
             return View();
         }
 
@@ -36,7 +43,7 @@ namespace MyApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<IActionResult> Send(string link)
+        public IActionResult Send(string link)
         {
             if (!link.ExitURL())
             {
@@ -47,7 +54,7 @@ namespace MyApp.Controllers
             {
                 ViewData["Message"] = $"Link ({link}) exists";
                
-                ViewData["Wait"] = StartWorkWeb.Start(link);
+                ViewData["Wait"] =StartWorkWeb.Start(link);
             }
             return View();
         }
