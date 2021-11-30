@@ -7,13 +7,8 @@ using ServiceStack;
 
 namespace MyApp.Class
 {
-    public static class UsePulenity
+    public class UsePulenity
     {
-        static UsePulenity()
-        {
-            Pullenti.Sdk.InitializeAll();
-        }
-
         public static async Task<AnalysisResult> ReturnPullenity(string text)
         {
             // создаём экземпляр процессора со стандартными анализаторами

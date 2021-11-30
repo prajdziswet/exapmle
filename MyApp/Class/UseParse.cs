@@ -15,6 +15,11 @@ namespace MyApp.Class
         {
             UriDomain = uri;
         }
+
+        public UseParse(String uri)
+        {
+            UriDomain = new Uri(uri);
+        }
         public string WithoutHtmlTag(string text)
         {
             return Regex.Replace(Regex.Replace(text, @"<(.|\n)*?>", string.Empty), @"\s+", " ");

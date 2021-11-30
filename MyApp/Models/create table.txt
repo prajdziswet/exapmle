@@ -11,5 +11,6 @@ CREATE TABLE HtmlPages
 
 CREATE TABLE HtmlPages (id SERIAL PRIMARY KEY,fullhtml TEXT,title TEXT,text TEXT,url TEXT,datetime TEXT,domain TEXT);
 
-docker container run -d --name=ps -p 2345:5432 -e POSTGRES_PASSWORD=praj -e PGDATA=/pgdata -v /pgdata:/pgdata postgres
+docker container run -d --name=psg -p 2345:5432 -e POSTGRES_PASSWORD=praj -e PGDATA=/pgdata -v /pgdata:/pgdata postgres:14.1
+docker container run -d --name=psq -p 2345:5432 -e POSTGRES_PASSWORD=praj -v /($pwd):/pgdata postgres:14.1 (invalid reference format: repository name must be lowercase)
 docker exec -t ps bash

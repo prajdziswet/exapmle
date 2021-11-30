@@ -18,7 +18,7 @@ namespace MyApp.Class
             if (path == "/Home/Send")
             {
                 await _next.Invoke(context);
-                context.Response.Headers.Add("Cache-Control", "public,max-age=5");
+                context.Response.Headers.Add("Cache-Control", "public,max-age=1");
             }
             else await _next.Invoke(context);
         }

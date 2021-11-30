@@ -19,6 +19,7 @@ namespace MyApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public new void ConfigureServices(IServiceCollection services)
         {
+            Pullenti.Sdk.InitializeAll();
 #if DEBUG
             services.AddMvc(options => options.EnableEndpointRouting = false).AddRazorRuntimeCompilation();
 #else
@@ -38,7 +39,7 @@ namespace MyApp
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseMiddleware<ChangeMaxAge>();
+            //app.UseMiddleware<ChangeMaxAge>();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

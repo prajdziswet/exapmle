@@ -43,12 +43,20 @@ namespace MyApp.Controllers
                 ViewData["Message"] = $"Link ({link}) doesn't exist";
                 
             }
-            else ViewData["Message"] = $"Link ({link}) exists";
-
-            WorkWeb ww = new WorkWeb(link);
-            //ww.pro();
-            ww.Analiz();
+            else
+            {
+                ViewData["Message"] = $"Link ({link}) exists";
+               
+                ViewData["Wait"] = StartWorkWeb.Start(link);
+            }
             return View();
         }
+
+        //public async Task<IActionResult> Send()
+        //{
+        //    ViewData["Message"] = $"Link processed";
+        //    ViewData["Wait"] = $"Wait..{WorkWeb.actionnumber}/{WorkWeb.allcount}";
+        //    return View();
+        //}
     }
 }

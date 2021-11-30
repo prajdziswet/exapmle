@@ -15,6 +15,12 @@ namespace MyApp.Class
         {
             URI = uri;
         }
+
+        public UseAbot(string uri)
+        {
+            URI =new Uri(uri);
+        }
+
         public async Task<string> HTML_Page(Uri URItemp)
         {
             var pageRequester = new PageRequester(new CrawlConfiguration(), new WebContentExtractor());
