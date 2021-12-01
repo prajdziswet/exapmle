@@ -17,14 +17,20 @@ namespace MyApp.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Group()
         {
+            return View("Group");
+        }
+
+        public IActionResult ShowGroup(string domain)
+        {
+            ViewData["domain"] = domain;
             return View();
         }
 
-        public IActionResult Show(int id)
+        public IActionResult ShowNews(int id)
         {
-            HTMLPage page = StartWorkWeb.ReturnHtmlPages().FirstOrDefault(x => x.id == id);
+            HTMLPage page = StartWorkWeb.GetHtmlPage(id);
             ViewData["title"] = page.title;
             ViewData["data"] = page.datetime;
             ViewData["text"] = page.text;
@@ -53,8 +59,12 @@ namespace MyApp.Controllers
             else
             {
                 ViewData["Message"] = $"Link ({link}) exists";
-               
-                ViewData["Wait"] =StartWorkWeb.Start(link);
+
+                String temp=StartWorkWeb.Start(link);
+                
+                ViewData["Wait"] = temp;
+
+                if ("Redirect" == temp) return Group();
             }
             return View();
         }

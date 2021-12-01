@@ -9,7 +9,7 @@ namespace MyApp.Class
 {
     public class UsePulenity
     {
-        public static async Task<AnalysisResult> ReturnPullenity(string text)
+        public static AnalysisResult ReturnPullenity(string text)
         {
             // создаём экземпляр процессора со стандартными анализаторами
             Processor processor = ProcessorService.CreateProcessor();

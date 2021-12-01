@@ -1,0 +1,22 @@
+﻿@using MyApp.Class
+
+<h2>Группы проаналізірованых сайтов</h2>
+@{
+    <table style="overflow: auto;">
+        <thead>
+        <tr>
+            <td>Проаналаизированые сайты</td>
+        </tr>
+        </thead>
+        <tbody style="overflow: auto;">
+        @foreach (string element in StartWorkWeb.ReturnGroup())
+        {
+            <tr>
+                <td><a asp-action="ShowGroup" asp-route-domain="@element">@element</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+}
+

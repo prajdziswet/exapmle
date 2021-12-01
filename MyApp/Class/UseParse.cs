@@ -70,13 +70,20 @@ namespace MyApp.Class
         {
             string strFirst =
                 BodyArticle.Substring(0, BodyArticle.Substring(0, BodyArticle.IndexOf("<p>")).LastIndexOf("<div"));
+            Console.WriteLine("__________________________________");
+            Console.WriteLine(strFirst);
+            Console.WriteLine("__________________________________");
             string strEnd = Regex.Replace(BodyArticle, "< script.+?/ script >", String.Empty);
             strEnd = WithoutHtmlTag(BodyArticle.Replace(strFirst, String.Empty))??"";
+            Console.WriteLine("__________________________________");
+            Console.WriteLine(strEnd);
+            Console.WriteLine("__________________________________");
             strFirst = Regex.Replace(strFirst, @"(?s)<h\d>.+?</h\d>", String.Empty);
             strFirst = WithoutHtmlTag(strFirst);
-            var time = UsePulenity.ReturnPullenity(strFirst).Result.Entities.Where(x => x.TypeName == "DATE").OrderByDescending(x=>x.ToString().Length).ToString()??"";
+            //var time = UsePulenity.ReturnPullenity(strFirst).Result.Entities.Where(x => x.TypeName == "DATE").OrderByDescending(x=>x.ToString().Length).ToString()??"";
+            var time = UsePulenity.ReturnPullenity(strFirst).Entities.Where(x => x.TypeName == "DATE").Select(x => x.ToString()).OrderByDescending(x => x.Length).FirstOrDefault().ToString();
 
-            return (time, strFirst);
+            return (time, strEnd);
         }
     }
 }

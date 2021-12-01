@@ -1,0 +1,25 @@
+﻿@using MyApp.Class
+@{
+    ViewData["Title"] = "Новости";
+}
+<h2>@ViewData["Title"]</h2>
+@{
+<table style="overflow: auto;">
+    <thead>
+        <tr>
+            <td>Дата</td>
+            <td>Новость</td>
+        </tr>
+    </thead>
+    <tbody style="overflow: auto;">
+        @foreach (HTMLPage element in StartWorkWeb.ReturnHtmlPages(@ViewData["domain"].ToString()))
+        {
+        <tr>
+            <td>@element.datetime</td>
+            <td><a asp-action="ShowNews" asp-route-id="@element.id">   @element.title</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+}

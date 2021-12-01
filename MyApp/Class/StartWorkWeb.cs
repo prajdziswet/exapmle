@@ -21,7 +21,13 @@ namespace MyApp.Class
             if (!link.ExitURL()) throw new ArgumentException();
 
             string returnString = "";
-            if (startAction == true) returnString= $"Done {actionnumber}/{allcount} in {link}";
+            //useAbot = new UseAbot(link);
+            //useParse = new UseParse(link);
+            //List<Uri> listUri = useAbot.GetLinks().Result;
+            //string HtmlCode = useAbot.HTML_Page(listUri[0]).Result;
+            //HTMLPage tempclass = useParse.CreateEntetyHTMLPage(listUri[0], HtmlCode);
+
+            if (startAction == true) returnString = $"Done {actionnumber}/{allcount} in {link}";
             else
             {
                 if (listSites.Count == 0)
@@ -41,7 +47,7 @@ namespace MyApp.Class
                     }
                     else
                     {
-                        returnString = "To check only one times in day";
+                        returnString = "Redirect";
                     }
                 }
             }
@@ -50,9 +56,30 @@ namespace MyApp.Class
 
         }
 
-        public static IReadOnlyList<HTMLPage> ReturnHtmlPages()
+        public static IReadOnlyList<HTMLPage> ReturnHtmlPages(String domain)
         {
-            return (new ApplicationContext()).HtmlPages.AsNoTracking().ToList();
+            return (new ApplicationContext()).HtmlPages.AsNoTracking().Where(x=>x.domain==domain).ToList();
+        }
+
+        public static IReadOnlyList<string> ReturnGroup()
+        {
+            return (new ApplicationContext()).HtmlPages.AsNoTracking().GroupBy(x => x.domain).Select(x => x.Key)
+                .ToList();
+        }
+
+        public static HTMLPage GetHtmlPage(int id)
+        {
+            return (new ApplicationContext()).HtmlPages.AsNoTracking().FirstOrDefault(x => x.id == id);
+        }
+
+        public static void DeleteNoticeDB()
+        {
+            using (ApplicationContext db =new ApplicationContext())
+            {
+                var allHtmlPages=db.HtmlPages.ToList();
+                db.RemoveRange(allHtmlPages);
+                db.SaveChanges();
+            }
         }
 
         private static UseAbot useAbot;
