@@ -9,8 +9,13 @@ CREATE TABLE HtmlPages
 	domain TEXT
 );
 
-CREATE TABLE HtmlPages (id SERIAL PRIMARY KEY,fullhtml TEXT,title TEXT,text TEXT,url TEXT,datetime TEXT,domain TEXT);
+CREATE TABLE htmlpages (id SERIAL PRIMARY KEY,fullhtml TEXT,title TEXT,text TEXT,url TEXT,datetime TEXT,domain TEXT);
 
 docker container run -d --name=psg -p 2345:5432 -e POSTGRES_PASSWORD=praj -e PGDATA=/pgdata -v /pgdata:/pgdata postgres:14.1
-docker container run -d --name=psq -p 2345:5432 -e POSTGRES_PASSWORD=praj -v /($pwd):/pgdata postgres:14.1 (invalid reference format: repository name must be lowercase)
-docker exec -t ps bash
+docker container run -d --name=psq1 -p 2345:5432 -e POSTGRES_PASSWORD=praj -v /($pwd)/pgdata:/pgdata postgres:14.1 (invalid reference format: repository name must be lowercase)
+
+docker container run -d --name=psq1 -p 2345:5432 -e POSTGRES_PASSWORD=praj -v "${pwd}/pgdata:/pgdata" postgres:14.1 -рабочее
+docker exec -it psq1 bash
+psql -U postgres
+\l все табліцы
+\с база - подключеніе к базе данных
