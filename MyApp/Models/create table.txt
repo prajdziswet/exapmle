@@ -13,8 +13,9 @@ CREATE TABLE htmlpages (id SERIAL PRIMARY KEY,fullhtml TEXT,title TEXT,text TEXT
 
 docker container run -d --name=psg -p 2345:5432 -e POSTGRES_PASSWORD=praj -e PGDATA=/pgdata -v /pgdata:/pgdata postgres:14.1
 docker container run -d --name=psq1 -p 2345:5432 -e POSTGRES_PASSWORD=praj -v /($pwd)/pgdata:/pgdata postgres:14.1 (invalid reference format: repository name must be lowercase)
-
 docker container run -d --name=psq1 -p 2345:5432 -e POSTGRES_PASSWORD=praj -v "${pwd}/pgdata:/pgdata" postgres:14.1 -рабочее
+
+docker container run -d --name=psq2 -p 2345:5432 -e POSTGRES_PASSWORD=praj -e PGDATA=/pgdata -v "${pwd}/pgdata:/pgdata" postgres:14.1
 docker exec -it psq1 bash
 psql -U postgres
 \l все табліцы
