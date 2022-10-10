@@ -12,10 +12,10 @@ namespace MyApp.Class
                 var request = (HttpWebRequest)WebRequest.Create(URI);
                 request.Method = "HEAD";
 
-                var response = (HttpWebResponse)request.GetResponse();
-
-                return response.StatusCode == HttpStatusCode.OK;
-
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    return response.StatusCode == HttpStatusCode.OK;
+                }
             }
             catch (Exception)
             {

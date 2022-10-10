@@ -22,6 +22,7 @@ namespace MyApp
         public new void ConfigureServices(IServiceCollection services)
         {
             Pullenti.Sdk.InitializeAll();
+            services.AddDbContext<ApplicationContext>();
             //services.AddDbContext<AppContext>(op =>op.UseNpgsql("Host=localhost;Port=2345;Database=postgres;Username=postgres;Password=praj"));
 
 #if DEBUG
